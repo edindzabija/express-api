@@ -1,12 +1,14 @@
 const express = require("express");
+// const bodyParser = require("body-parser");
+
+const book = require("./routes/book.route");
 
 const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("works");
-});
+app.use("/books", book);
+
+const port = 5000;
 
 app.listen(port, () => {
-  console.log(`listening on ${port}`);
+  console.log(`server running on port: ${port}`);
 });
