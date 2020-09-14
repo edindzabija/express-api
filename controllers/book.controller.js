@@ -1,12 +1,12 @@
 const Book = require("../models/book.model");
 
-exports.book_create = function (req, res) {
-  let book = new Book({
+exports.book_create = (req, res) => {
+  const book = new Book({
     title: req.body.title,
     author: req.body.author,
   });
 
-  book.save(function (err) {
+  book.save((err) => {
     if (err) {
       return next(err);
     }
@@ -14,16 +14,23 @@ exports.book_create = function (req, res) {
   });
 };
 
-exports.book_details = function (req, res) {
-  Book.findById(req.params.id, function (err, book) {
+exports.book_details = (req, res) => {
+  Book.findById(req.params.id, (err, book) => {
     if (err) return next(err);
     res.send(book);
   });
 };
 
-exports.book_update = function (req, res) {
-  Book.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, book) {
-      if (err) return next(err);
-      res.send('Book udpated.');
+exports.book_update = (req, res) => {
+  Book.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, book) => {
+    if (err) return next(err);
+    res.send("Book Udpated.");
+  });
+};
+
+exports.book_delete = (req, res) => {
+  Book.findByIdAndRemove(req.params.id, (err) => {
+    if (err) return next(err);
+    res.send("Book Deleted");
   });
 };
