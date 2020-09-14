@@ -20,3 +20,10 @@ exports.book_details = function (req, res) {
     res.send(book);
   });
 };
+
+exports.book_update = function (req, res) {
+  Book.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, book) {
+      if (err) return next(err);
+      res.send('Book udpated.');
+  });
+};
