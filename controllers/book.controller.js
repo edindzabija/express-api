@@ -13,3 +13,10 @@ exports.book_create = function (req, res) {
     res.send("Book created successfully");
   });
 };
+
+exports.book_details = function (req, res) {
+  Book.findById(req.params.id, function (err, book) {
+    if (err) return next(err);
+    res.send(book);
+  });
+};
