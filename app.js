@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const book = require("./routes/book.route");
 
 require("dotenv").config();
-
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -20,7 +20,9 @@ const dbConnect = async () => {
     handleError(error);
   }
 };
+
 dbConnect();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/books", book);

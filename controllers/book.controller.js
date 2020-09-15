@@ -14,6 +14,13 @@ exports.book_create = (req, res) => {
   });
 };
 
+exports.all_books = (req, res) => {
+  Book.find({}, (err, book) => {
+    if (err) return next(err);
+    res.json(book);
+  });
+};
+
 exports.book_details = (req, res) => {
   Book.findById(req.params.id, (err, book) => {
     if (err) return next(err);
