@@ -1,7 +1,11 @@
 ### node.js/express api
 
+run:
+```bash
+node app.js
+```
 
-with nodemon:
+or with nodemon(dev only):
 
 ```bash
 npm run dev
